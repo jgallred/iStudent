@@ -18,6 +18,13 @@
 		9614441815BB3B7B004CBA37 /* libGDataTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9614440F15BB3B5D004CBA37 /* libGDataTouchStaticLib.a */; };
 		9614441A15BB3B81004CBA37 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9614441915BB3B81004CBA37 /* Security.framework */; };
 		9614441C15BB3B87004CBA37 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9614441B15BB3B87004CBA37 /* SystemConfiguration.framework */; };
+		9614456415BB3F55004CBA37 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9614456315BB3F55004CBA37 /* CoreDataTableViewController.m */; };
+		9614456715BB3F8C004CBA37 /* SemestersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9614456615BB3F8C004CBA37 /* SemestersViewController.m */; };
+		9614456D15BB4C27004CBA37 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9614456C15BB4C27004CBA37 /* DatePickerViewController.m */; };
+		9614457115BB4C4E004CBA37 /* EditSemesterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9614457015BB4C4E004CBA37 /* EditSemesterViewController.m */; };
+		9614457415BB4D79004CBA37 /* Semester.m in Sources */ = {isa = PBXBuildFile; fileRef = 9614457315BB4D79004CBA37 /* Semester.m */; };
+		9614457715BB5A9C004CBA37 /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9614457615BB5A9C004CBA37 /* DatePickerViewController.xib */; };
+		9614457E15BB9746004CBA37 /* NSManagedObject-IsNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 9614457D15BB9746004CBA37 /* NSManagedObject-IsNew.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -398,6 +405,19 @@
 		9614455915BB3D0A004CBA37 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
 		9614455A15BB3D0A004CBA37 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
 		9614455B15BB3D0A004CBA37 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		9614456215BB3F55004CBA37 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		9614456315BB3F55004CBA37 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		9614456515BB3F8C004CBA37 /* SemestersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SemestersViewController.h; sourceTree = "<group>"; };
+		9614456615BB3F8C004CBA37 /* SemestersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SemestersViewController.m; sourceTree = "<group>"; };
+		9614456B15BB4C27004CBA37 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
+		9614456C15BB4C27004CBA37 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
+		9614456F15BB4C4E004CBA37 /* EditSemesterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSemesterViewController.h; sourceTree = "<group>"; };
+		9614457015BB4C4E004CBA37 /* EditSemesterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSemesterViewController.m; sourceTree = "<group>"; };
+		9614457215BB4D79004CBA37 /* Semester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Semester.h; sourceTree = "<group>"; };
+		9614457315BB4D79004CBA37 /* Semester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Semester.m; sourceTree = "<group>"; };
+		9614457615BB5A9C004CBA37 /* DatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
+		9614457C15BB9746004CBA37 /* NSManagedObject-IsNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject-IsNew.h"; sourceTree = "<group>"; };
+		9614457D15BB9746004CBA37 /* NSManagedObject-IsNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject-IsNew.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -452,10 +472,10 @@
 		961443EC15BB3B50004CBA37 /* iStudent */ = {
 			isa = PBXGroup;
 			children = (
-				9614441E15BB3D09004CBA37 /* Headers */,
+				9614455C15BB3ECF004CBA37 /* Classes */,
+				9614441E15BB3D09004CBA37 /* GData Headers */,
 				961443F515BB3B51004CBA37 /* AppDelegate.h */,
 				961443F615BB3B51004CBA37 /* AppDelegate.m */,
-				961443F815BB3B51004CBA37 /* iStudent.xcdatamodeld */,
 				961443ED15BB3B51004CBA37 /* Supporting Files */,
 			);
 			path = iStudent;
@@ -464,6 +484,8 @@
 		961443ED15BB3B51004CBA37 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				961443F815BB3B51004CBA37 /* iStudent.xcdatamodeld */,
+				9614457615BB5A9C004CBA37 /* DatePickerViewController.xib */,
 				961443EE15BB3B51004CBA37 /* iStudent-Info.plist */,
 				961443EF15BB3B51004CBA37 /* InfoPlist.strings */,
 				961443F215BB3B51004CBA37 /* main.m */,
@@ -484,7 +506,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9614441E15BB3D09004CBA37 /* Headers */ = {
+		9614441E15BB3D09004CBA37 /* GData Headers */ = {
 			isa = PBXGroup;
 			children = (
 				9614441F15BB3D09004CBA37 /* GData.h */,
@@ -805,8 +827,51 @@
 				9614455A15BB3D0A004CBA37 /* SBJsonParser.h */,
 				9614455B15BB3D0A004CBA37 /* SBJsonWriter.h */,
 			);
-			name = Headers;
+			name = "GData Headers";
 			path = "../../../../../Library/Developer/Xcode/DerivedData/iStudent-bczfggqtxtokkqcnpvtfdrsltutb/Build/Products/Debug-iphonesimulator/Headers";
+			sourceTree = "<group>";
+		};
+		9614455C15BB3ECF004CBA37 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9614457515BB4D7F004CBA37 /* Models */,
+				9614456E15BB4C2D004CBA37 /* Shared */,
+				9614455D15BB3EEA004CBA37 /* Semester */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		9614455D15BB3EEA004CBA37 /* Semester */ = {
+			isa = PBXGroup;
+			children = (
+				9614456515BB3F8C004CBA37 /* SemestersViewController.h */,
+				9614456615BB3F8C004CBA37 /* SemestersViewController.m */,
+				9614456F15BB4C4E004CBA37 /* EditSemesterViewController.h */,
+				9614457015BB4C4E004CBA37 /* EditSemesterViewController.m */,
+			);
+			name = Semester;
+			sourceTree = "<group>";
+		};
+		9614456E15BB4C2D004CBA37 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				9614456B15BB4C27004CBA37 /* DatePickerViewController.h */,
+				9614456C15BB4C27004CBA37 /* DatePickerViewController.m */,
+				9614456215BB3F55004CBA37 /* CoreDataTableViewController.h */,
+				9614456315BB3F55004CBA37 /* CoreDataTableViewController.m */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		9614457515BB4D7F004CBA37 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9614457215BB4D79004CBA37 /* Semester.h */,
+				9614457315BB4D79004CBA37 /* Semester.m */,
+				9614457C15BB9746004CBA37 /* NSManagedObject-IsNew.h */,
+				9614457D15BB9746004CBA37 /* NSManagedObject-IsNew.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -905,6 +970,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				961443F115BB3B51004CBA37 /* InfoPlist.strings in Resources */,
+				9614457715BB5A9C004CBA37 /* DatePickerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,6 +984,12 @@
 				961443F315BB3B51004CBA37 /* main.m in Sources */,
 				961443F715BB3B51004CBA37 /* AppDelegate.m in Sources */,
 				961443FA15BB3B51004CBA37 /* iStudent.xcdatamodeld in Sources */,
+				9614456415BB3F55004CBA37 /* CoreDataTableViewController.m in Sources */,
+				9614456715BB3F8C004CBA37 /* SemestersViewController.m in Sources */,
+				9614456D15BB4C27004CBA37 /* DatePickerViewController.m in Sources */,
+				9614457115BB4C4E004CBA37 /* EditSemesterViewController.m in Sources */,
+				9614457415BB4D79004CBA37 /* Semester.m in Sources */,
+				9614457E15BB9746004CBA37 /* NSManagedObject-IsNew.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1039,6 +1111,7 @@
 				961443FF15BB3B51004CBA37 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

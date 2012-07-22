@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SemestersViewController.h"
 
 @implementation AppDelegate
 
@@ -29,6 +30,15 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    SemestersViewController *semesters = [[[SemestersViewController alloc]
+                                          initWithManagedObjectContext:self.managedObjectContext] autorelease];
+    
+    UINavigationController *navCon = [[UINavigationController alloc] 
+                                       initWithRootViewController:semesters];
+    
+    [self.window addSubview:navCon.view];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
