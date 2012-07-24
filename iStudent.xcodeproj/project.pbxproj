@@ -27,6 +27,12 @@
 		9614457E15BB9746004CBA37 /* NSManagedObject-IsNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 9614457D15BB9746004CBA37 /* NSManagedObject-IsNew.m */; };
 		96E6A06615BEEE280067A844 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E6A06515BEEE280067A844 /* Course.m */; };
 		96E6A06C15BEEE8F0067A844 /* MeetingTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E6A06B15BEEE8E0067A844 /* MeetingTime.m */; };
+		96E6A07215BEF03A0067A844 /* DaysOfTheWeekPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E6A06E15BEF03A0067A844 /* DaysOfTheWeekPicker.m */; };
+		96E6A07315BEF03A0067A844 /* TimePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E6A07015BEF03A0067A844 /* TimePickerViewController.m */; };
+		96E6A07415BEF03A0067A844 /* TimePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96E6A07115BEF03A0067A844 /* TimePickerViewController.xib */; };
+		96E6A07715BEF1090067A844 /* EditMeetingTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E6A07615BEF1090067A844 /* EditMeetingTimeViewController.m */; };
+		96E6A07C15BEF2DC0067A844 /* CoursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E6A07915BEF2DC0067A844 /* CoursesViewController.m */; };
+		96E6A07D15BEF2DC0067A844 /* EditCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E6A07B15BEF2DC0067A844 /* EditCourseViewController.m */; };
 		96FB4F1C15BC9E2500415A5D /* TextEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FB4F1A15BC9E2500415A5D /* TextEntryViewController.m */; };
 		96FB4F1D15BC9E2500415A5D /* TextEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96FB4F1B15BC9E2500415A5D /* TextEntryViewController.xib */; };
 /* End PBXBuildFile section */
@@ -426,6 +432,17 @@
 		96E6A06515BEEE280067A844 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
 		96E6A06A15BEEE8E0067A844 /* MeetingTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingTime.h; sourceTree = "<group>"; };
 		96E6A06B15BEEE8E0067A844 /* MeetingTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingTime.m; sourceTree = "<group>"; };
+		96E6A06D15BEF03A0067A844 /* DaysOfTheWeekPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaysOfTheWeekPicker.h; sourceTree = "<group>"; };
+		96E6A06E15BEF03A0067A844 /* DaysOfTheWeekPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaysOfTheWeekPicker.m; sourceTree = "<group>"; };
+		96E6A06F15BEF03A0067A844 /* TimePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePickerViewController.h; sourceTree = "<group>"; };
+		96E6A07015BEF03A0067A844 /* TimePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePickerViewController.m; sourceTree = "<group>"; };
+		96E6A07115BEF03A0067A844 /* TimePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePickerViewController.xib; sourceTree = "<group>"; };
+		96E6A07515BEF1090067A844 /* EditMeetingTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMeetingTimeViewController.h; sourceTree = "<group>"; };
+		96E6A07615BEF1090067A844 /* EditMeetingTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMeetingTimeViewController.m; sourceTree = "<group>"; };
+		96E6A07815BEF2DC0067A844 /* CoursesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoursesViewController.h; sourceTree = "<group>"; };
+		96E6A07915BEF2DC0067A844 /* CoursesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursesViewController.m; sourceTree = "<group>"; };
+		96E6A07A15BEF2DC0067A844 /* EditCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCourseViewController.h; sourceTree = "<group>"; };
+		96E6A07B15BEF2DC0067A844 /* EditCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCourseViewController.m; sourceTree = "<group>"; };
 		96FB4F1915BC9E2500415A5D /* TextEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEntryViewController.h; sourceTree = "<group>"; };
 		96FB4F1A15BC9E2500415A5D /* TextEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEntryViewController.m; sourceTree = "<group>"; };
 		96FB4F1B15BC9E2500415A5D /* TextEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEntryViewController.xib; sourceTree = "<group>"; };
@@ -498,6 +515,7 @@
 				961443F815BB3B51004CBA37 /* iStudent.xcdatamodeld */,
 				9614457615BB5A9C004CBA37 /* DatePickerViewController.xib */,
 				96FB4F1B15BC9E2500415A5D /* TextEntryViewController.xib */,
+				96E6A07115BEF03A0067A844 /* TimePickerViewController.xib */,
 				961443EE15BB3B51004CBA37 /* iStudent-Info.plist */,
 				961443EF15BB3B51004CBA37 /* InfoPlist.strings */,
 				961443F215BB3B51004CBA37 /* main.m */,
@@ -868,6 +886,10 @@
 		9614456E15BB4C2D004CBA37 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				96E6A06D15BEF03A0067A844 /* DaysOfTheWeekPicker.h */,
+				96E6A06E15BEF03A0067A844 /* DaysOfTheWeekPicker.m */,
+				96E6A06F15BEF03A0067A844 /* TimePickerViewController.h */,
+				96E6A07015BEF03A0067A844 /* TimePickerViewController.m */,
 				96FB4F1915BC9E2500415A5D /* TextEntryViewController.h */,
 				96FB4F1A15BC9E2500415A5D /* TextEntryViewController.m */,
 				9614456B15BB4C27004CBA37 /* DatePickerViewController.h */,
@@ -896,6 +918,12 @@
 		96E6A06015BEEA250067A844 /* Course */ = {
 			isa = PBXGroup;
 			children = (
+				96E6A07815BEF2DC0067A844 /* CoursesViewController.h */,
+				96E6A07915BEF2DC0067A844 /* CoursesViewController.m */,
+				96E6A07A15BEF2DC0067A844 /* EditCourseViewController.h */,
+				96E6A07B15BEF2DC0067A844 /* EditCourseViewController.m */,
+				96E6A07515BEF1090067A844 /* EditMeetingTimeViewController.h */,
+				96E6A07615BEF1090067A844 /* EditMeetingTimeViewController.m */,
 			);
 			name = Course;
 			sourceTree = "<group>";
@@ -998,6 +1026,7 @@
 				961443F115BB3B51004CBA37 /* InfoPlist.strings in Resources */,
 				9614457715BB5A9C004CBA37 /* DatePickerViewController.xib in Resources */,
 				96FB4F1D15BC9E2500415A5D /* TextEntryViewController.xib in Resources */,
+				96E6A07415BEF03A0067A844 /* TimePickerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1020,6 +1049,11 @@
 				96FB4F1C15BC9E2500415A5D /* TextEntryViewController.m in Sources */,
 				96E6A06615BEEE280067A844 /* Course.m in Sources */,
 				96E6A06C15BEEE8F0067A844 /* MeetingTime.m in Sources */,
+				96E6A07215BEF03A0067A844 /* DaysOfTheWeekPicker.m in Sources */,
+				96E6A07315BEF03A0067A844 /* TimePickerViewController.m in Sources */,
+				96E6A07715BEF1090067A844 /* EditMeetingTimeViewController.m in Sources */,
+				96E6A07C15BEF2DC0067A844 /* CoursesViewController.m in Sources */,
+				96E6A07D15BEF2DC0067A844 /* EditCourseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

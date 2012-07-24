@@ -18,4 +18,14 @@
 @property (nonatomic, retain) NSDate * endTime;
 @property (nonatomic, retain) Course *course;
 
+enum MeetingTimeDays {
+    MeetingTimeSunday = 1,
+    MeetingTimeMonday = 2,
+    MeetingTimeTuesday = 4,
+    MeetingTimeWednesday = 8,
+    MeetingTimeThursday = 16,
+    MeetingTimeFriday = 32,
+    MeetingTimeSaturday = 64
+};
+
 @end
