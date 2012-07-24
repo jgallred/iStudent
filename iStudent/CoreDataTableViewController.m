@@ -160,6 +160,18 @@
 	[self deleteManagedObject:managedObject];
 }
 
+- (void)accessoryButtonTappedForManagedObject:(NSManagedObject *)managedObject
+{
+    
+}
+
+- (void)tableView:(UITableView *)tableView 
+accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    NSManagedObject *managedObject = [[self fetchedResultsControllerForTableView:tableView] objectAtIndexPath:indexPath];
+	return [self accessoryButtonTappedForManagedObject:managedObject];
+}
+
 #pragma mark UIViewController methods
 
 - (void)viewDidLoad

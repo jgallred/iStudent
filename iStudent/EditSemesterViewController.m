@@ -126,7 +126,12 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     if([cellLabel isEqualToString:TITLE_CELL]) {
-        
+        TextEntryViewController *textEntry = [[TextEntryViewController alloc] init];
+        textEntry.title = cellLabel;
+        textEntry.text = self.semester.title;
+        textEntry.delegate = self;
+        textEntry.placeholder = @"Semester Title";
+        [self.navigationController pushViewController:textEntry animated:YES];
     } else if ([cellLabel isEqualToString:START_DATE_CELL]) {
         [self showDatePickerForCell:cell withDate:self.semester.startDate];
     }  else if ([cellLabel isEqualToString:END_DATE_CELL]) {
@@ -169,6 +174,19 @@
         self.semester.endDate = date;
     }
     [self refreshDateCell:[self selectedCell] withDate:date];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+- (void) textEntry:(TextEntryViewController *)viewController didFinishWithText:(NSString *)text
+{
+    [self selectedCell].detailTextLabel.text = text;
+    self.semester.title = text;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void) textEntrydidCancel:(TextEntryViewController *)viewController
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 

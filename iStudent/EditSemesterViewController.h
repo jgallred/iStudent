@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Semester.h"
 #import "DatePickerViewController.h"
+#import "TextEntryViewController.h"
 
 @class EditSemesterViewController;
 
@@ -24,7 +25,7 @@
 
 @end
 
-@interface EditSemesterViewController : UITableViewController <DatePickerViewControllerDelegate>
+@interface EditSemesterViewController : UITableViewController <DatePickerViewControllerDelegate, TextEntryViewControllerDelegate>
 {
     @private
     NSArray *cellLabels;

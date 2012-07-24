@@ -47,4 +47,6 @@
 // (e.g. it might just change the object so that it does not match the fetched results controller's predicate anymore)
 - (void)deleteManagedObject:(NSManagedObject *)managedObject;
 
+- (void)accessoryButtonTappedForManagedObject:(NSManagedObject *)managedObject;
+
 @end

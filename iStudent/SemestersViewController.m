@@ -27,7 +27,7 @@
                                      inManagedObjectContext:context];
         request.sortDescriptors = [NSArray arrayWithObject:
                                    [NSSortDescriptor sortDescriptorWithKey:@"startDate" 
-                                                                 ascending:YES]];
+                                                                 ascending:NO]];
 		
 		NSFetchedResultsController *frc = [[NSFetchedResultsController alloc]
                                            initWithFetchRequest:request
@@ -41,8 +41,6 @@
 		[frc release];
 		
 		self.titleKey = @"title";
-//        self.subtitleKey = @"subname";
-//		self.searchKey = @"title";
 	}
 	return self;
 }
@@ -78,6 +76,48 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (NSString *) formatDate:(NSDate *)date
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"MM/yy"];
+    return [df stringFromDate:date];
+}
+
+- (NSString *)detailTextForSemester:(Semester *)semester
+{
+    return [NSString stringWithFormat:@"%@ - %@", 
+            [self formatDate:semester.startDate], 
+            [self formatDate:semester.endDate]];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView 
+          cellForManagedObject:(NSManagedObject *)managedObject 
+{
+    Semester *semester = (Semester *)managedObject;
+    static NSString *CellIdentifier = @"SemesterCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                      reuseIdentifier:CellIdentifier];
+    }
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    
+    cell.textLabel.text = semester.title;
+    cell.detailTextLabel.text = [self detailTextForSemester:semester];
+    
+    return cell;
+}
+
+- (void)accessoryButtonTappedForManagedObject:(NSManagedObject *)managedObject
+{
+    [self editSemester:(Semester *)managedObject];
+}
+
+- (void)managedObjectSelected:(NSManagedObject *)managedObject
+{
+    //[self editSemester:(Semester *)managedObject];
+}
+
 - (void)addSemester:(UIBarButtonItem *)button
 {
     Semester *semester = [[NSEntityDescription 
@@ -103,16 +143,44 @@
     [self dismissModalViewControllerAnimated:YES];
     
     if ([semester isNew]) {
+        //TODO Destroys the instance?
         [semester.managedObjectContext deleteObject:semester];
         NSLog(@"Semester is new.");
     } else {
         NSLog(@"Semester is not new.");
+        if([semester hasChanges]) {
+            [semester.managedObjectContext rollback];
+        }
     }
 }
 
 - (void) editSemesterViewController:(EditSemesterViewController *)viewController didFinishWithSemester:(Semester *)semester
 {
+    NSError *error = nil;
+    if(![semester.managedObjectContext save:&error]) {
+        NSLog(@"Save Error");
+        if(error != nil) {
+            NSLog(@"Error: %@", error.description);
+        }
+    }
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (BOOL)canDeleteManagedObject:(NSManagedObject *)managedObject
+{
+    return YES;
+}
+
+- (void)deleteManagedObject:(NSManagedObject *)managedObject
+{
+    [managedObject.managedObjectContext deleteObject:managedObject];
+    NSError *error = nil;
+    if(![managedObject.managedObjectContext save:&error]) {
+        NSLog(@"Delete Error");
+        if(error != nil) {
+            NSLog(@"Error: %@", error.description);
+        }
+    }
 }
 
 @end

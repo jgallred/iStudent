@@ -25,6 +25,10 @@
 		9614457415BB4D79004CBA37 /* Semester.m in Sources */ = {isa = PBXBuildFile; fileRef = 9614457315BB4D79004CBA37 /* Semester.m */; };
 		9614457715BB5A9C004CBA37 /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9614457615BB5A9C004CBA37 /* DatePickerViewController.xib */; };
 		9614457E15BB9746004CBA37 /* NSManagedObject-IsNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 9614457D15BB9746004CBA37 /* NSManagedObject-IsNew.m */; };
+		96E6A06615BEEE280067A844 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E6A06515BEEE280067A844 /* Course.m */; };
+		96E6A06C15BEEE8F0067A844 /* MeetingTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E6A06B15BEEE8E0067A844 /* MeetingTime.m */; };
+		96FB4F1C15BC9E2500415A5D /* TextEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FB4F1A15BC9E2500415A5D /* TextEntryViewController.m */; };
+		96FB4F1D15BC9E2500415A5D /* TextEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96FB4F1B15BC9E2500415A5D /* TextEntryViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -418,6 +422,13 @@
 		9614457615BB5A9C004CBA37 /* DatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
 		9614457C15BB9746004CBA37 /* NSManagedObject-IsNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject-IsNew.h"; sourceTree = "<group>"; };
 		9614457D15BB9746004CBA37 /* NSManagedObject-IsNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject-IsNew.m"; sourceTree = "<group>"; };
+		96E6A06415BEEE280067A844 /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
+		96E6A06515BEEE280067A844 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
+		96E6A06A15BEEE8E0067A844 /* MeetingTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingTime.h; sourceTree = "<group>"; };
+		96E6A06B15BEEE8E0067A844 /* MeetingTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingTime.m; sourceTree = "<group>"; };
+		96FB4F1915BC9E2500415A5D /* TextEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEntryViewController.h; sourceTree = "<group>"; };
+		96FB4F1A15BC9E2500415A5D /* TextEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEntryViewController.m; sourceTree = "<group>"; };
+		96FB4F1B15BC9E2500415A5D /* TextEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEntryViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -486,6 +497,7 @@
 			children = (
 				961443F815BB3B51004CBA37 /* iStudent.xcdatamodeld */,
 				9614457615BB5A9C004CBA37 /* DatePickerViewController.xib */,
+				96FB4F1B15BC9E2500415A5D /* TextEntryViewController.xib */,
 				961443EE15BB3B51004CBA37 /* iStudent-Info.plist */,
 				961443EF15BB3B51004CBA37 /* InfoPlist.strings */,
 				961443F215BB3B51004CBA37 /* main.m */,
@@ -834,6 +846,7 @@
 		9614455C15BB3ECF004CBA37 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				96E6A06015BEEA250067A844 /* Course */,
 				9614457515BB4D7F004CBA37 /* Models */,
 				9614456E15BB4C2D004CBA37 /* Shared */,
 				9614455D15BB3EEA004CBA37 /* Semester */,
@@ -855,6 +868,8 @@
 		9614456E15BB4C2D004CBA37 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				96FB4F1915BC9E2500415A5D /* TextEntryViewController.h */,
+				96FB4F1A15BC9E2500415A5D /* TextEntryViewController.m */,
 				9614456B15BB4C27004CBA37 /* DatePickerViewController.h */,
 				9614456C15BB4C27004CBA37 /* DatePickerViewController.m */,
 				9614456215BB3F55004CBA37 /* CoreDataTableViewController.h */,
@@ -866,12 +881,23 @@
 		9614457515BB4D7F004CBA37 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				96E6A06A15BEEE8E0067A844 /* MeetingTime.h */,
+				96E6A06B15BEEE8E0067A844 /* MeetingTime.m */,
+				96E6A06415BEEE280067A844 /* Course.h */,
+				96E6A06515BEEE280067A844 /* Course.m */,
 				9614457215BB4D79004CBA37 /* Semester.h */,
 				9614457315BB4D79004CBA37 /* Semester.m */,
 				9614457C15BB9746004CBA37 /* NSManagedObject-IsNew.h */,
 				9614457D15BB9746004CBA37 /* NSManagedObject-IsNew.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		96E6A06015BEEA250067A844 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Course;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -971,6 +997,7 @@
 			files = (
 				961443F115BB3B51004CBA37 /* InfoPlist.strings in Resources */,
 				9614457715BB5A9C004CBA37 /* DatePickerViewController.xib in Resources */,
+				96FB4F1D15BC9E2500415A5D /* TextEntryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -990,6 +1017,9 @@
 				9614457115BB4C4E004CBA37 /* EditSemesterViewController.m in Sources */,
 				9614457415BB4D79004CBA37 /* Semester.m in Sources */,
 				9614457E15BB9746004CBA37 /* NSManagedObject-IsNew.m in Sources */,
+				96FB4F1C15BC9E2500415A5D /* TextEntryViewController.m in Sources */,
+				96E6A06615BEEE280067A844 /* Course.m in Sources */,
+				96E6A06C15BEEE8F0067A844 /* MeetingTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
