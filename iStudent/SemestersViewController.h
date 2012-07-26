@@ -10,6 +10,9 @@
 #import "EditSemesterViewController.h"
 
 @interface SemestersViewController : CoreDataTableViewController <EditSemesterViewControllerDelegate>
+{
+    NSManagedObjectContext *managedObjectContext;
+}
 
 - (id) initWithManagedObjectContext:(NSManagedObjectContext *)context;
 @end

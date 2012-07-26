@@ -9,12 +9,15 @@
 #import "SemestersViewController.h"
 #import "EditSemesterViewController.h"
 #import "NSManagedObject-IsNew.h"
+#import "CoursesViewController.h"
 
 @interface SemestersViewController ()
-
+@property (retain) NSManagedObjectContext *managedObjectContext;
 @end
 
 @implementation SemestersViewController
+
+@synthesize managedObjectContext;
 
 - (id) initWithManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -41,6 +44,7 @@
 		[frc release];
 		
 		self.titleKey = @"title";
+        self.managedObjectContext = context;
 	}
 	return self;
 }
@@ -56,7 +60,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+//    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.navigationItem.rightBarButtonItem = [self makeAddButton];
 }
 
@@ -115,7 +119,10 @@
 
 - (void)managedObjectSelected:(NSManagedObject *)managedObject
 {
-    //[self editSemester:(Semester *)managedObject];
+    CoursesViewController *courses = [[[CoursesViewController alloc] 
+                                       initWithManagedObjectContext:self.managedObjectContext 
+                                       andSemester:(Semester *)managedObject] autorelease];
+    [self.navigationController pushViewController:courses animated:YES];
 }
 
 - (void)addSemester:(UIBarButtonItem *)button

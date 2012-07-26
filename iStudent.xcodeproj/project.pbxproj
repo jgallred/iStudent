@@ -33,6 +33,7 @@
 		96E6A07715BEF1090067A844 /* EditMeetingTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E6A07615BEF1090067A844 /* EditMeetingTimeViewController.m */; };
 		96E6A07C15BEF2DC0067A844 /* CoursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E6A07915BEF2DC0067A844 /* CoursesViewController.m */; };
 		96E6A07D15BEF2DC0067A844 /* EditCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E6A07B15BEF2DC0067A844 /* EditCourseViewController.m */; };
+		96E6A08115BF47340067A844 /* MeetingTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E6A08015BF47340067A844 /* MeetingTimesViewController.m */; };
 		96FB4F1C15BC9E2500415A5D /* TextEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96FB4F1A15BC9E2500415A5D /* TextEntryViewController.m */; };
 		96FB4F1D15BC9E2500415A5D /* TextEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96FB4F1B15BC9E2500415A5D /* TextEntryViewController.xib */; };
 /* End PBXBuildFile section */
@@ -443,6 +444,8 @@
 		96E6A07915BEF2DC0067A844 /* CoursesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoursesViewController.m; sourceTree = "<group>"; };
 		96E6A07A15BEF2DC0067A844 /* EditCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCourseViewController.h; sourceTree = "<group>"; };
 		96E6A07B15BEF2DC0067A844 /* EditCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCourseViewController.m; sourceTree = "<group>"; };
+		96E6A07F15BF47340067A844 /* MeetingTimesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingTimesViewController.h; sourceTree = "<group>"; };
+		96E6A08015BF47340067A844 /* MeetingTimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingTimesViewController.m; sourceTree = "<group>"; };
 		96FB4F1915BC9E2500415A5D /* TextEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEntryViewController.h; sourceTree = "<group>"; };
 		96FB4F1A15BC9E2500415A5D /* TextEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEntryViewController.m; sourceTree = "<group>"; };
 		96FB4F1B15BC9E2500415A5D /* TextEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEntryViewController.xib; sourceTree = "<group>"; };
@@ -918,14 +921,24 @@
 		96E6A06015BEEA250067A844 /* Course */ = {
 			isa = PBXGroup;
 			children = (
+				96E6A07E15BF47070067A844 /* Meetings */,
 				96E6A07815BEF2DC0067A844 /* CoursesViewController.h */,
 				96E6A07915BEF2DC0067A844 /* CoursesViewController.m */,
 				96E6A07A15BEF2DC0067A844 /* EditCourseViewController.h */,
 				96E6A07B15BEF2DC0067A844 /* EditCourseViewController.m */,
-				96E6A07515BEF1090067A844 /* EditMeetingTimeViewController.h */,
-				96E6A07615BEF1090067A844 /* EditMeetingTimeViewController.m */,
 			);
 			name = Course;
+			sourceTree = "<group>";
+		};
+		96E6A07E15BF47070067A844 /* Meetings */ = {
+			isa = PBXGroup;
+			children = (
+				96E6A07515BEF1090067A844 /* EditMeetingTimeViewController.h */,
+				96E6A07615BEF1090067A844 /* EditMeetingTimeViewController.m */,
+				96E6A07F15BF47340067A844 /* MeetingTimesViewController.h */,
+				96E6A08015BF47340067A844 /* MeetingTimesViewController.m */,
+			);
+			name = Meetings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1054,6 +1067,7 @@
 				96E6A07715BEF1090067A844 /* EditMeetingTimeViewController.m in Sources */,
 				96E6A07C15BEF2DC0067A844 /* CoursesViewController.m in Sources */,
 				96E6A07D15BEF2DC0067A844 /* EditCourseViewController.m in Sources */,
+				96E6A08115BF47340067A844 /* MeetingTimesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

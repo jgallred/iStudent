@@ -7,9 +7,11 @@
 //
 
 #import "EditCourseViewController.h"
+#import "MeetingTimesViewController.h"
 
 @interface EditCourseViewController ()
 @property (readonly) NSArray *cellLabels;
+@property (readonly) NSArray *sectionLabels;
 @property (retain) Course *course;
 @end
 
@@ -19,19 +21,29 @@
 @synthesize delegate;
 
 #define TITLE_CELL @"Title"
-#define START_DATE_CELL @"Start"
-#define END_DATE_CELL @"End"
+#define INSTRUCTOR_CELL @"Instructor"
+#define LOCATION_CELL @"Location"
+#define MEETING_TIME_CELL @"Meeting Times"
 
 - (NSArray *)cellLabels
 {
     if (!cellLabels) {
         cellLabels = [[NSArray arrayWithObjects:
                        [NSArray arrayWithObject:TITLE_CELL],
+                       [NSArray arrayWithObject:MEETING_TIME_CELL],
                        [NSArray arrayWithObjects:
-                        START_DATE_CELL, 
-                        END_DATE_CELL, nil], nil] retain];
+                        INSTRUCTOR_CELL, 
+                        LOCATION_CELL, nil], nil] retain];
     }
     return cellLabels;
+}
+
+- (NSArray *)sectionLabels
+{
+    if (!sectionLabels) {
+        sectionLabels = [[NSArray arrayWithObjects:@"", @"", @"Details", nil] retain];
+    }
+    return sectionLabels;
 }
 
 -(id)initWithCourse:(Course *)aCourse
@@ -83,6 +95,11 @@
     return self.cellLabels.count;
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.sectionLabels objectAtIndex:section];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return ((NSArray *)[self.cellLabels objectAtIndex:section]).count;
@@ -90,7 +107,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"CourseEditCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
@@ -110,10 +127,10 @@
     NSString *cellLabel = cell.textLabel.text;
     if([cellLabel isEqualToString:TITLE_CELL]) {
         cell.detailTextLabel.text = self.course.title;
-    } else if([cellLabel isEqualToString:START_DATE_CELL]) {
-//        [self refreshDateCell:cell withDate:self.course.startDate];
-    } else if([cellLabel isEqualToString:END_DATE_CELL]) {
-//        [self refreshDateCell:cell withDate:self.course.endDate];
+    } else if([cellLabel isEqualToString:INSTRUCTOR_CELL]) {
+        cell.detailTextLabel.text = self.course.instructor;
+    } else if([cellLabel isEqualToString:LOCATION_CELL]) {
+        cell.detailTextLabel.text = self.course.location;
     }
 }
 
@@ -123,20 +140,32 @@
 {
     NSString *cellLabel = [[self.cellLabels objectAtIndex:indexPath.section] 
                            objectAtIndex:indexPath.row];
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     if([cellLabel isEqualToString:TITLE_CELL]) {
-        TextEntryViewController *textEntry = [[TextEntryViewController alloc] init];
-        textEntry.title = cellLabel;
-        textEntry.text = self.course.title;
-        textEntry.delegate = self;
-        textEntry.placeholder = @"Course Title";
-        [self.navigationController pushViewController:textEntry animated:YES];
-    } else if ([cellLabel isEqualToString:START_DATE_CELL]) {
-//        [self showDatePickerForCell:cell withDate:self.semester.startDate];
-    }  else if ([cellLabel isEqualToString:END_DATE_CELL]) {
-//        [self showDatePickerForCell:cell withDate:self.semester.endDate];
+        [self getTextWithTitle:cellLabel andText:self.course.title andPlaceholder:@"Course Title"];
+    } else if ([cellLabel isEqualToString:INSTRUCTOR_CELL]) {
+        [self getTextWithTitle:cellLabel andText:self.course.instructor andPlaceholder:@"Name"];
+    }  else if ([cellLabel isEqualToString:LOCATION_CELL]) {
+        [self getTextWithTitle:cellLabel andText:self.course.location andPlaceholder:@"Where"];
+    }  else if ([cellLabel isEqualToString:MEETING_TIME_CELL]) {
+        MeetingTimesViewController *meetings = 
+        [[[MeetingTimesViewController alloc] 
+          initWithManagedObjectContext:self.course.managedObjectContext 
+          andCourse:self.course] autorelease];
+        [self.navigationController pushViewController:meetings animated:YES];
     }
+}
+
+- (void)getTextWithTitle:(NSString *)title 
+                 andText:(NSString *)text 
+          andPlaceholder:(NSString *)placeholder
+{
+    TextEntryViewController *textEntry = [[[TextEntryViewController alloc] init] autorelease];
+    textEntry.title = title;
+    textEntry.text = text;
+    textEntry.delegate = self;
+    textEntry.placeholder = placeholder;
+    [self.navigationController pushViewController:textEntry animated:YES];
 }
 
 - (UITableViewCell *)selectedCell
@@ -148,7 +177,15 @@
 - (void) textEntry:(TextEntryViewController *)viewController didFinishWithText:(NSString *)text
 {
     [self selectedCell].detailTextLabel.text = text;
-    self.course.title = text;
+    
+    if([viewController.title isEqualToString:TITLE_CELL]) {
+        self.course.title = text;
+    } else if ([viewController.title isEqualToString:INSTRUCTOR_CELL]) {
+        self.course.instructor = text;
+    }  else if ([viewController.title isEqualToString:LOCATION_CELL]) {
+        self.course.location = text;
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

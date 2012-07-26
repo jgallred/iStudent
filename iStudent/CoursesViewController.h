@@ -8,8 +8,13 @@
 
 #import "CoreDataTableViewController.h"
 #import "EditCourseViewController.h"
+#import "Semester.h"
 
 @interface CoursesViewController : CoreDataTableViewController <EditCourseViewControllerDelegate>
+{
+    Semester *semester;
+}
 
-- (id) initWithManagedObjectContext:(NSManagedObjectContext *)context;
+- (id) initWithManagedObjectContext:(NSManagedObjectContext *)context 
+                       andSemester:(Semester *)aSemester;
 @end

@@ -21,13 +21,13 @@
 - (void) editCourseViewController:(EditCourseViewController *)viewController
               didCancelWithCourse:(Course *)course;
 
-
 @end
 
 @interface EditCourseViewController : UITableViewController <TextEntryViewControllerDelegate>
 {
     @private
     NSArray *cellLabels;
+    NSArray *sectionLabels;
     Course *course;
     
     id <EditCourseViewControllerDelegate> delegate;

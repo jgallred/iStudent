@@ -11,11 +11,12 @@
 @interface EditMeetingTimeViewController ()
 @property (readonly) NSArray *sectionHeaders;
 @property (readonly) NSArray *cellLabels;
+@property (retain) MeetingTime *meetingTime;
 @end
 
 @implementation EditMeetingTimeViewController
 
-@synthesize values, delegate;
+@synthesize delegate, meetingTime;
 
 - (NSArray *)sectionHeaders
 {
@@ -37,115 +38,16 @@
         cellLabels = [[NSArray arrayWithObjects:
                            [NSArray arrayWithObject:DAYS_CELL],
                            [NSArray arrayWithObjects:
-                            START_TIME_CELL, 
-                            END_TIME_CELL, nil], nil] retain];
+                            START_TIME_CELL, END_TIME_CELL, nil], nil] retain];
     }
     return cellLabels;
 }
 
-- (NSMutableDictionary *)values
-{
-    if(values == nil) {
-        values = [[NSMutableDictionary dictionary] retain];
-    }
-    return values;
-}
-- (void) refreshTimeCell:(UITableViewCell *)cell 
-{
-    NSString *cellLabel = cell.textLabel.text;
-    NSDate *aTime = [self.values objectForKey:cellLabel];
-    
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setTimeStyle:NSDateFormatterShortStyle]; 
-    
-    cell.detailTextLabel.text = [df stringFromDate:aTime];
-}
-
-- (UITableViewCell *)selectedCell
-{
-    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-    return [self.tableView cellForRowAtIndexPath:path];
-}
-
-- (void) timePicker:(TimePickerViewController *)vc didFinshWithTime:(NSDate *)aDate
-{
-    UITableViewCell *cell = [self selectedCell];    
-    [self.values setObject:aDate forKey:cell.textLabel.text];    
-    [self refreshTimeCell:cell];    
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void) timePickerDidCancel:(TimePickerViewController *)vc
-{
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (NSString *) stringForDay:(NSNumber *)day
-{
-    switch ([day intValue]) {
-        case DaysOfTheWeekSunday:
-            return @"Su";
-        case DaysOfTheWeekMonday:
-            return @"M";
-        case DaysOfTheWeekTuesday:
-            return @"Tu";
-        case DaysOfTheWeekWednesday:
-            return @"W";
-        case DaysOfTheWeekThursday:
-            return @"Th";
-        case DaysOfTheWeekFriday:
-            return @"F";
-        case DaysOfTheWeekSaturday:
-            return @"Sa";
-        default:
-            return @"Unknown";
-    }
-}
-
-- (NSString *) textForDays:(NSArray *)days
-{
-    NSMutableString *text = [NSMutableString string];
-    for (NSNumber *day in days) {
-        [text appendString:[self stringForDay:day]];
-    }
-    return text;
-}
-
-- (void) refreshDaysCell:(UITableViewCell *)cell
-{
-    NSString *cellLabel = cell.textLabel.text;
-    NSArray *days = [self.values objectForKey:cellLabel];
-    cell.detailTextLabel.text = [self textForDays:days];
-}
-
-- (void) daysOfTheWeekPicker:(DaysOfTheWeekPicker *)vc didFinishWithDays:(NSArray *)days
-{
-    UITableViewCell *cell = [self selectedCell];
-    [self.values setObject:days forKey:cell.textLabel.text];
-    [self refreshDaysCell:cell];
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void) daysOfTheWeekPickerDidCancel:(DaysOfTheWeekPicker *)vc
-{
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)donePressed:(UIBarButtonItem *)sender
-{
-    [self.delegate daysAndTime:self didFinishWithValues:self.values];
-}
-
-- (void) cancelPressed:(UIBarButtonItem *)sender
-{
-    [self.delegate daysAndTimeDidCancel:self];
-}
-
-- (id) init
+- (id) initWithMeetingTime:(MeetingTime *)aMeetingTime
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if(self) {
-        
+        self.meetingTime = aMeetingTime;
     }
     return self;
 }
@@ -169,7 +71,7 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidUnload
@@ -204,7 +106,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"MeetingTimeDataCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
@@ -214,13 +116,20 @@
     cell.textLabel.text = [[self.cellLabels objectAtIndex:indexPath.section] 
                            objectAtIndex:indexPath.row];
     
-    if ([cell.textLabel.text isEqualToString:DAYS_CELL]) {
-        [self refreshDaysCell:cell];
-    } else {
-        [self refreshTimeCell:cell];
-    }
+    [self setDetailForCell:cell];
     
     return cell;
+}
+
+-(void)setDetailForCell:(UITableViewCell *)cell
+{
+    if ([cell.textLabel.text isEqualToString:DAYS_CELL]) {
+        [self refreshDaysCell:cell];
+    } else if ([cell.textLabel.text isEqualToString:START_TIME_CELL]) {
+        [self refreshTimeCell:cell withTime:self.meetingTime.startTime];
+    } else if ([cell.textLabel.text isEqualToString:END_TIME_CELL]) {
+        [self refreshTimeCell:cell withTime:self.meetingTime.endTime];
+    }
 }
 
 #pragma mark - Table view delegate
@@ -233,28 +142,149 @@
     if([cellLabel isEqualToString:DAYS_CELL]) {
         DaysOfTheWeekPicker *dowp = [[[DaysOfTheWeekPicker alloc] init] autorelease];
         dowp.delegate = self;
-        dowp.selectedDays = [self.values objectForKey:cellLabel];
+        dowp.selectedDays = [self getDayPickerDaysForMeetingTime];
         dowp.title = cellLabel;
-        UINavigationController *nvc = [[[UINavigationController alloc] 
-                                        initWithRootViewController:dowp] autorelease];
-        [self presentModalViewController:nvc animated:YES];
-    } else if ([cellLabel isEqualToString:START_TIME_CELL] 
-               || [cellLabel isEqualToString:END_TIME_CELL] ) {
-        TimePickerViewController *tvc = [[[TimePickerViewController alloc] init] autorelease];
-        tvc.delegate = self;
-        tvc.time = [self.values objectForKey:cellLabel];
-        tvc.title = cellLabel;
-        UINavigationController *nvc = [[[UINavigationController alloc] 
-                                        initWithRootViewController:tvc] autorelease];
-        [self presentModalViewController:nvc animated:YES];
+        [self.navigationController pushViewController:dowp animated:YES];
+    } else if ([cellLabel isEqualToString:START_TIME_CELL] ) {
+        [self editTime:self.meetingTime.startTime withTitle:cellLabel];
+    } else if ([cellLabel isEqualToString:END_TIME_CELL] ) {
+        [self editTime:self.meetingTime.endTime withTitle:cellLabel];
     }
+}
+
+-(void)editTime:(NSDate *)time withTitle:(NSString *)title
+{
+    TimePickerViewController *tvc = [[[TimePickerViewController alloc] init] autorelease];
+    tvc.delegate = self;
+    tvc.time = time;
+    tvc.title = title;
+    [self.navigationController pushViewController:tvc animated:YES];
+}
+
+- (void) refreshTimeCell:(UITableViewCell *)cell withTime:(NSDate *)time
+{   
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setTimeStyle:NSDateFormatterShortStyle]; 
+    cell.detailTextLabel.text = [df stringFromDate:time];
+}
+
+- (UITableViewCell *)selectedCell
+{
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+    return [self.tableView cellForRowAtIndexPath:path];
+}
+
+- (void) timePicker:(TimePickerViewController *)vc didFinshWithTime:(NSDate *)time
+{
+    UITableViewCell *cell = [self selectedCell];    
+    if ([cell.textLabel.text isEqualToString:START_TIME_CELL] ) {
+        self.meetingTime.startTime = time;
+    } else if ([cell.textLabel.text isEqualToString:END_TIME_CELL] ) {
+        self.meetingTime.endTime = time;
+    }
+    [self refreshTimeCell:cell withTime:time];    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) timePickerDidCancel:(TimePickerViewController *)vc
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) refreshDaysCell:(UITableViewCell *)cell
+{
+    cell.detailTextLabel.text = [MeetingTime stringForDaysOfMeetingTime:self.meetingTime];
+}
+
+-(void)setMeetingTimeDaysFromDayPickerDays:(NSArray *)days
+{
+    int newDays = 0x00;
+    for (NSNumber *day in days) {
+        switch ([day intValue]) {
+            case DaysOfTheWeekSunday:
+                newDays = newDays | MeetingTimeSunday;
+                break;
+            case DaysOfTheWeekMonday:
+                newDays = newDays | MeetingTimeMonday;
+                break;
+            case DaysOfTheWeekTuesday:
+                newDays = newDays | MeetingTimeTuesday;
+                break;
+            case DaysOfTheWeekWednesday:
+                newDays = newDays | MeetingTimeWednesday;
+                break;
+            case DaysOfTheWeekThursday:
+                newDays = newDays | MeetingTimeThursday;
+                break;
+            case DaysOfTheWeekFriday:
+                newDays = newDays | MeetingTimeFriday;
+                break;
+            case DaysOfTheWeekSaturday:
+                newDays = newDays | MeetingTimeSaturday;
+                break;
+            default:
+                break;
+        }
+    }
+    self.meetingTime.daysOfWeek = [NSNumber numberWithInt:newDays];
+}
+
+-(NSArray *)getDayPickerDaysForMeetingTime
+{
+    NSMutableArray *days = [NSMutableArray array];
+    int daysOfWeek = [self.meetingTime.daysOfWeek intValue];
+    if(daysOfWeek & MeetingTimeSunday) {
+        [days addObject:[NSNumber numberWithInt:DaysOfTheWeekSunday]];
+    }
+    if(daysOfWeek & MeetingTimeMonday) {
+        [days addObject:[NSNumber numberWithInt:DaysOfTheWeekMonday]];
+    } 
+    if(daysOfWeek & MeetingTimeTuesday) {
+        [days addObject:[NSNumber numberWithInt:DaysOfTheWeekTuesday]];
+    } 
+    if(daysOfWeek & MeetingTimeWednesday) {
+        [days addObject:[NSNumber numberWithInt:DaysOfTheWeekWednesday]];
+    } 
+    if(daysOfWeek & MeetingTimeThursday) {
+        [days addObject:[NSNumber numberWithInt:DaysOfTheWeekThursday]];
+    } 
+    if(daysOfWeek & MeetingTimeFriday) {
+        [days addObject:[NSNumber numberWithInt:DaysOfTheWeekFriday]];
+    } 
+    if(daysOfWeek & MeetingTimeSaturday) {
+        [days addObject:[NSNumber numberWithInt:DaysOfTheWeekSaturday]];
+    }
+    return days;
+}
+
+- (void) daysOfTheWeekPicker:(DaysOfTheWeekPicker *)vc didFinishWithDays:(NSArray *)days
+{
+    UITableViewCell *cell = [self selectedCell];
+    [self setMeetingTimeDaysFromDayPickerDays:days];
+    [self refreshDaysCell:cell];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) daysOfTheWeekPickerDidCancel:(DaysOfTheWeekPicker *)vc
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)donePressed:(UIBarButtonItem *)sender
+{
+    [self.delegate editMeetingTimeViewController:self didFinishWithMeetingTime:self.meetingTime];
+}
+
+- (void) cancelPressed:(UIBarButtonItem *)sender
+{
+    [self.delegate editMeetingTimeViewController:self didCancelWithMeetingTime:self.meetingTime];
 }
 
 - (void) dealloc
 {
-    [values release];
     [cellLabels release];
     [sectionHeaders release];
+    //TODO [meetingTime release];
     [super dealloc];
 }
 

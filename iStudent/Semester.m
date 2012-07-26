@@ -16,4 +16,11 @@
 @dynamic title;
 @dynamic courses;
 
+- (void)awakeFromInsert
+{
+    [super awakeFromInsert];
+    self.startDate = [NSDate date];
+    self.endDate = [NSDate date];
+}
+
 @end

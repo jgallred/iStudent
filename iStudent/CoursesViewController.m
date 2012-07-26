@@ -11,20 +11,26 @@
 #import "NSManagedObject-IsNew.h"
 
 @interface CoursesViewController ()
-
+@property (retain) Semester *semester;
 @end
 
 @implementation CoursesViewController
 
-- (id) initWithManagedObjectContext:(NSManagedObjectContext *)context
+@synthesize semester;
+
+- (id) initWithManagedObjectContext:(NSManagedObjectContext *)context 
+                        andSemester:(Semester *)aSemester
 {
     if (self = [super initWithStyle:UITableViewStylePlain])
 	{
-        self.title = @"Semesters";
+        self.title = @"Courses";
         
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		request.entity = [NSEntityDescription entityForName:@"Course" 
                                      inManagedObjectContext:context];
+        
+        request.predicate = [NSPredicate predicateWithFormat:@"semester == %@", semester];
+        
         request.sortDescriptors = [NSArray arrayWithObject:
                                    [NSSortDescriptor sortDescriptorWithKey:@"title" 
                                                                  ascending:YES]];
@@ -41,6 +47,7 @@
 		[frc release];
 		
 		self.titleKey = @"title";
+        self.semester = aSemester;
 	}
 	return self;
 }
@@ -50,13 +57,13 @@
     return [[[UIBarButtonItem alloc] 
              initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
              target:self 
-             action:@selector(addSemester:)] autorelease];
+             action:@selector(addCourse:)] autorelease];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+//    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.navigationItem.rightBarButtonItem = [self makeAddButton];
 }
 
@@ -80,12 +87,13 @@
           cellForManagedObject:(NSManagedObject *)managedObject 
 {
     Course *course = (Course *)managedObject;
-    static NSString *CellIdentifier = @"SemesterCell";
+    static NSString *CellIdentifier = @"CourseCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                       reuseIdentifier:CellIdentifier];
     }
+    
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     cell.textLabel.text = course.title;
@@ -103,7 +111,7 @@
     //[self editSemester:(Semester *)managedObject];
 }
 
-- (void)addSemester:(UIBarButtonItem *)button
+- (void)addCourse:(UIBarButtonItem *)button
 {
     Course *course = [[NSEntityDescription 
                           insertNewObjectForEntityForName:@"Course"
@@ -167,6 +175,12 @@
             NSLog(@"Error: %@", error.description);
         }
     }
+}
+
+-(void)dealloc
+{
+    [semester release];
+    [super dealloc];
 }
 
 @end

@@ -9,13 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "TimePickerViewController.h"
 #import "DaysOfTheWeekPicker.h"
+#import "MeetingTime.h"
 
 @class EditMeetingTimeViewController;
 
 @protocol EditMeetingTimeViewControllerDelegate
 @required
-- (void) daysAndTime:(EditMeetingTimeViewController *)vc didFinishWithValues:(NSDictionary *)values;
-- (void) daysAndTimeDidCancel:(EditMeetingTimeViewController *)vc;
+- (void) editMeetingTimeViewController:(EditMeetingTimeViewController *)vc 
+                   didFinishWithMeetingTime:(MeetingTime *)meetingTime;
+
+@optional
+- (void) editMeetingTimeViewController:(EditMeetingTimeViewController *)vc
+              didCancelWithMeetingTime:(MeetingTime *)meetingTime;
 @end
 
 @interface EditMeetingTimeViewController : UITableViewController <DaysOfTheWeekPickerDelegate, TimePickerViewControllerDelegate>
@@ -23,11 +28,12 @@
     @private
     NSArray *sectionHeaders;
     NSArray *cellLabels;
-    NSMutableDictionary *values;
+    MeetingTime *meetingTime;
     id<EditMeetingTimeViewControllerDelegate> delegate;
 }
 
 @property (assign) id<EditMeetingTimeViewControllerDelegate> delegate;
-@property (retain, nonatomic) NSMutableDictionary *values;
+
+-(id)initWithMeetingTime:(MeetingTime *)aMeetingTime;
 
 @end

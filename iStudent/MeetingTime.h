@@ -19,13 +19,15 @@
 @property (nonatomic, retain) Course *course;
 
 enum MeetingTimeDays {
-    MeetingTimeSunday = 1,
-    MeetingTimeMonday = 2,
-    MeetingTimeTuesday = 4,
-    MeetingTimeWednesday = 8,
-    MeetingTimeThursday = 16,
-    MeetingTimeFriday = 32,
-    MeetingTimeSaturday = 64
+    MeetingTimeSunday = 0x01, //0000 0001
+    MeetingTimeMonday = 0x02, //0000 0010
+    MeetingTimeTuesday = 0x04, //0000 0100
+    MeetingTimeWednesday = 0x08, //0000 1000
+    MeetingTimeThursday = 0x10, //0001 0000
+    MeetingTimeFriday = 0x20, //0010 0000
+    MeetingTimeSaturday = 0x40 //0100 0000
 };
+
++ (NSString *)stringForDaysOfMeetingTime:(MeetingTime *)meetingTime;
 
 @end
