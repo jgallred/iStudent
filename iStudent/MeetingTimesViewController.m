@@ -78,11 +78,17 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+/*
+ Sets the text label of the cell based on the meeting time
+ */
 -(void)setTitleOfCell:(UITableViewCell *)cell withMeetingTime:(MeetingTime *)meetingTime
 {
     cell.textLabel.text = [MeetingTime stringForDaysOfMeetingTime:meetingTime];
 }
 
+/*
+ Generates an NSString from the provided NSDate
+ */
 -(NSString *)stringForTime:(NSDate *)time
 {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -90,6 +96,9 @@
     return [df stringFromDate:time];
 }
 
+/*
+ Generates a string of the times for the meeting time, formatted "startTime - endTime"
+ */
 -(NSString *)stringForMeetingTime:(MeetingTime *)meetingTime
 {
     return [NSString stringWithFormat:@"%@ - %@",
@@ -97,6 +106,9 @@
             [self stringForTime:meetingTime.endTime]];
 }
 
+/*
+ Sets the detail label of the cell with the time range string for the meeting time
+ */
 -(void)setDetailOfCell:(UITableViewCell *)cell withMeetingTime:(MeetingTime *)meetingTime
 {
     cell.detailTextLabel.text = [self stringForMeetingTime:meetingTime];
@@ -126,6 +138,10 @@
     [self editMeetingTime:(MeetingTime *)managedObject];
 }
 
+/*
+ Prepares a new MeetingTime instance for the course and context provided in the initializer and
+ pushes a new view controller on the stack to edit it
+ */
 - (void)addMeetingTime:(UIBarButtonItem *)button
 {
     MeetingTime *meetingTime = [[NSEntityDescription 
@@ -136,6 +152,9 @@
     [self editMeetingTime:meetingTime];
 }
 
+/*
+ Presents an EditMeetingTimeViewController as a modal view controller to edit the meeting time
+ */
 - (void)editMeetingTime:(MeetingTime *)meetingTime
 {
     EditMeetingTimeViewController *editTime = [[[EditMeetingTimeViewController alloc] 
@@ -160,12 +179,6 @@
             [meetingTime.managedObjectContext rollback];
         }
     }
-}
-
-- (UITableViewCell *)selectedCell
-{
-    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-    return [self.tableView cellForRowAtIndexPath:path];
 }
 
 -(void)editMeetingTimeViewController:(EditMeetingTimeViewController *)vc 

@@ -13,18 +13,31 @@
 @protocol TextEntryViewControllerDelegate
 
 @required
+/*
+ Notifies the delegate that the user finished making changes to the selected text
+ */
 - (void)textEntry:(TextEntryViewController *)viewController didFinishWithText:(NSString *)text;
 
 @optional
+/*
+ Notifies the delegate that the user canceled any changes
+ */
 -(void)textEntrydidCancel:(TextEntryViewController *)viewController;
 
 @end
 
+/*
+ Edits a small amount of text
+ */
 @interface TextEntryViewController : UIViewController <UITextFieldDelegate>
 {
+    /* Displays the current value of the text */
     IBOutlet UITextField *titleField;
+    /* The view controller's delegate */
     id<TextEntryViewControllerDelegate> delegate;
+    /* The place holder of the text input */
     NSString *placeholder;
+    /* The text to edit */
     NSString *text;
 }
 

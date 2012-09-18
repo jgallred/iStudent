@@ -80,6 +80,9 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+/*
+ Generates a string from the date of the format "09/12"
+ */
 - (NSString *) formatDate:(NSDate *)date
 {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -87,6 +90,9 @@
     return [df stringFromDate:date];
 }
 
+/*
+ Generates a string from the semester's date range of the format "09/12 - 11/12"
+ */
 - (NSString *)detailTextForSemester:(Semester *)semester
 {
     return [NSString stringWithFormat:@"%@ - %@", 
@@ -125,6 +131,10 @@
     [self.navigationController pushViewController:courses animated:YES];
 }
 
+/*
+ Prepares a new Semester instance for context provided in the initializer and
+ pushes a new view controller on the stack to edit it
+ */
 - (void)addSemester:(UIBarButtonItem *)button
 {
     Semester *semester = [[NSEntityDescription 
@@ -134,6 +144,9 @@
     [self editSemester:semester];
 }
 
+/*
+ Presents an EditSemesterViewController as a modal view controller to edit the semester
+ */
 - (void)editSemester:(Semester *)semester
 {
     EditSemesterViewController *editSemester = [[[EditSemesterViewController alloc] 

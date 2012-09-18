@@ -11,6 +11,9 @@
 
 @class Semester;
 
+/*
+ Represents a course the user is taking
+ */
 @interface Course : NSManagedObject
 
 @property (nonatomic, retain) NSString * title;

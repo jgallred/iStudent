@@ -121,6 +121,9 @@
     return cell;
 }
 
+/*
+ Sets the detail label of the table cell based on the cell label
+ */
 -(void)setDetailForCell:(UITableViewCell *)cell
 {
     if ([cell.textLabel.text isEqualToString:DAYS_CELL]) {
@@ -152,6 +155,11 @@
     }
 }
 
+/*
+ Pushes a TimePickerViewController onto the navigation stack and sets it to edit the specified time
+ @param time The NSDate to edit
+ @param title The title of the new view controller
+ */
 -(void)editTime:(NSDate *)time withTitle:(NSString *)title
 {
     TimePickerViewController *tvc = [[[TimePickerViewController alloc] init] autorelease];
@@ -161,6 +169,9 @@
     [self.navigationController pushViewController:tvc animated:YES];
 }
 
+/*
+ Sets the cell detail label with the formatted string representation of the time
+ */
 - (void) refreshTimeCell:(UITableViewCell *)cell withTime:(NSDate *)time
 {   
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -168,6 +179,9 @@
     cell.detailTextLabel.text = [df stringFromDate:time];
 }
 
+/*
+ Returns the selected table cell
+ */
 - (UITableViewCell *)selectedCell
 {
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
@@ -191,11 +205,18 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+/*
+ Populates the cell's detail label with a string representation of the selected days of the week
+ */
 - (void) refreshDaysCell:(UITableViewCell *)cell
 {
     cell.detailTextLabel.text = [MeetingTime stringForDaysOfMeetingTime:self.meetingTime];
 }
 
+/*
+ Sets the MeetingTime daysOfWeek bit array according to the array of NSNumbers from 
+ the DaysOfTheWeekView Controller
+ */
 -(void)setMeetingTimeDaysFromDayPickerDays:(NSArray *)days
 {
     int newDays = 0x00;
@@ -229,6 +250,10 @@
     self.meetingTime.daysOfWeek = [NSNumber numberWithInt:newDays];
 }
 
+/*
+ Prepares an array of NSNumbers for the DaysOfTheWeekViewController based on the bit 
+ array of the MeetingTime
+ */
 -(NSArray *)getDayPickerDaysForMeetingTime
 {
     NSMutableArray *days = [NSMutableArray array];

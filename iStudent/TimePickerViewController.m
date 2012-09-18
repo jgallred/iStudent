@@ -44,6 +44,7 @@
     [self.delegate timePickerDidCancel:self];
 }
 
+/* Updates the date label based on the time provided in the initializer */
 - (void) updateLabel
 {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -51,6 +52,7 @@
     self.timeLabel.text = [df stringFromDate:self.time];
 }
 
+/* Updates the time label when the time picker value changes */
 - (IBAction)timeChanged:(UIDatePicker *)sender
 {
     self.time = sender.date;

@@ -31,7 +31,6 @@
     return [self.titleField resignFirstResponder];
 }
 							
-
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     [self.delegate textEntry:self didFinishWithText:self.titleField.text];

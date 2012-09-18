@@ -122,6 +122,9 @@
     return cell;
 }
 
+/*
+ Sets the detail label of the cell with the correct data based on the cell label
+ */
 - (void)setValueOfCell:(UITableViewCell *)cell
 {
     NSString *cellLabel = cell.textLabel.text;
@@ -156,6 +159,10 @@
     }
 }
 
+/* 
+ Pushes a new TextEntryViewController onto the navigation stack with the given title, existing
+ text, and placeholder 
+ */
 - (void)getTextWithTitle:(NSString *)title 
                  andText:(NSString *)text 
           andPlaceholder:(NSString *)placeholder
@@ -168,6 +175,9 @@
     [self.navigationController pushViewController:textEntry animated:YES];
 }
 
+/*
+ Returns the selected table cell
+ */
 - (UITableViewCell *)selectedCell
 {
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];

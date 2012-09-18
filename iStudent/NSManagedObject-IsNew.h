@@ -1,5 +1,7 @@
 //
 //  NSManagedObject-IsNew.h
+//
+// Found online.  Provides support for determining if the NSManagedObject is new.
 
 #import <Foundation/Foundation.h>
 

@@ -111,6 +111,10 @@
     //[self editSemester:(Semester *)managedObject];
 }
 
+/*
+ Prepares a new Course instance for the semester and context provided in the initializer and 
+ pushes a new view controller on the stack to edit it
+ */
 - (void)addCourse:(UIBarButtonItem *)button
 {
     Course *course = [[NSEntityDescription 
@@ -120,6 +124,9 @@
     [self editCourse:course];
 }
 
+/*
+ Presents an EditCourseViewController as a modal view controller to edit the course
+ */
 - (void)editCourse:(Course *)course
 {
     EditCourseViewController *editCourse = [[[EditCourseViewController alloc] 
