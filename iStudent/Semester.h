@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-
+/*
+ Represents a period of time over which course are offered
+ */
 @interface Semester : NSManagedObject
 
 @property (nonatomic, retain) NSDate * endDate;

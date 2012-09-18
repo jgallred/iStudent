@@ -3,6 +3,7 @@
 //
 //  Created for Stanford CS193p Spring 2010
 //
+//  Minor modifications made my me <Jason Allred>
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
@@ -48,5 +49,10 @@
 - (void)deleteManagedObject:(NSManagedObject *)managedObject;
 
 - (void)accessoryButtonTappedForManagedObject:(NSManagedObject *)managedObject;
+
+/*
+ Returns the selected table cell
+ */
+- (UITableViewCell *)selectedCell;
 
 @end

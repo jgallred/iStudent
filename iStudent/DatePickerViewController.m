@@ -18,6 +18,7 @@
 @synthesize dateLabel, datePicker;
 @synthesize delegate, date;
 
+/* Prepares a formatted date string  and populates the label with it */
 - (void) showDateInDateLabel:(NSDate *)aDate
 {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];

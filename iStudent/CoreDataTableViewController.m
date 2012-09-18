@@ -297,5 +297,11 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
     [super dealloc];
 }
 
+- (UITableViewCell *)selectedCell
+{
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+    return [self.tableView cellForRowAtIndexPath:path];
+}
+
 @end
 

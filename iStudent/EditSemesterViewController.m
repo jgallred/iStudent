@@ -105,6 +105,9 @@
     return cell;
 }
 
+/*
+ Sets the detail label of the cell with the correct data based on the cell label
+ */
 - (void)setValueOfCell:(UITableViewCell *)cell
 {
     NSString *cellLabel = cell.textLabel.text;
@@ -139,6 +142,9 @@
     }
 }
 
+/*
+ Pushes a new DatePickerViewController onto the navigation stack to edit the given NSDate
+ */
 - (void) showDatePickerForCell:(UITableViewCell *)cell withDate:(NSDate *)date
 {
     DatePickerViewController *dvc = [[[DatePickerViewController alloc] init] autorelease];
@@ -154,6 +160,9 @@
     return [self.tableView cellForRowAtIndexPath:path];
 }
 
+/*
+ Sets the detail label of the cell with a formatted string of the NSDate
+ */
 - (void) refreshDateCell:(UITableViewCell *)cell withDate:(NSDate *)date
 {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];

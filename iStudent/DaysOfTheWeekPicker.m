@@ -61,6 +61,9 @@
     }
 }
 
+/*
+ Selects the days specified in daysOfWeek
+ */
 - (void)showSelectedDays
 {
     for (int i = 0; i < self.daysOfWeek.count; i++) {
@@ -71,6 +74,9 @@
     }
 }
 
+/*
+ Sets the selected days to show based on the provided array and then displays them
+ */
 - (void)setSelectedDays:(NSArray *)days
 {
     self.daysOfWeek = nil;
